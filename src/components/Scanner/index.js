@@ -28,7 +28,8 @@ class Scanner extends Component {
       onKeyPress={this.onKeyPress} 
       onChange={this.handleChange} 
       value={this.state.input}
-      autoFocus/>
+      autoFocus
+      ocus/>
     )
   }
 }

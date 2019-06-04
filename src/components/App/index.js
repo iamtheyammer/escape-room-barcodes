@@ -3,6 +3,7 @@ import Notifications, { notify } from 'react-notify-toast'
 import './App.css';
 import Scanner from '../Scanner'
 import IngredientList from '../IngredientList';
+import Complete from '../Complete';
 
 let goals = [
   {
@@ -14,7 +15,7 @@ let goals = [
   {
     id: 1,
     complete: false,
-    barcode: "5392062314",
+    barcode: "3195047930",
     type: "milk"
   },
   {
@@ -26,7 +27,7 @@ let goals = [
   {
     id: 3,
     complete: false,
-    barcode: "0000",
+    barcode: "5392062314",
     type: "sugar"
   },
   {
@@ -38,7 +39,7 @@ let goals = [
   {
     id: 5,
     complete: false,
-    barcode: "9727424685",
+    barcode: "0054532206",
     type: "sugar"
   },
   {
@@ -66,7 +67,8 @@ class App extends React.Component {
     super(props);
     this.state = {
       statedGoals: goals,
-      shouldClear: false
+      shouldClear: false,
+      complete: false
     }
   }
 
@@ -85,15 +87,22 @@ class App extends React.Component {
     })
     this.setState({
       statedGoals: newState,
-      shouldClear: true
+      shouldClear: true,
+      complete: (newState.filter((goal) => goal.complete).length === newState.length)
     });
     if(found === false) notify.show("That's not a barcode in this game.", "warning", 1500);
   }
 
   render() {
+    if(this.state.complete === true) {
+      return <Complete />;
+    }
     return (
       <div className="App">
         <Notifications />
+        <h1>Escape!</h1>
+        <p>Scan barcodes to unlock things. So far, you've unlocked:</p>
+        <p>(if the barcode reader isn't working, click on the text box below the list and and try again)</p>
         <IngredientList ingredients={this.state.statedGoals.filter((goal) => goal.complete === true)}/>
         <Scanner onSubmit={this.handleSubmit} shouldClear={this.state.shouldClear}></Scanner>
       </div>
