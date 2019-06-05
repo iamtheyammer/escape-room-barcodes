@@ -21,7 +21,7 @@ class Dropdown extends Component {
   render() {
     return (
       <div>
-        <select
+        <select size="5"
           value={this.state.value}
           onChange={this.handleChange}
         >

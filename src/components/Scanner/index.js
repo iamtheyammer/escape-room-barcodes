@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import "./index.css"
 
 class Scanner extends Component {
   constructor(props) {
@@ -6,6 +7,7 @@ class Scanner extends Component {
     this.state = {
       input: ""
     }
+    this.textInput = React.createRef();
   }
 
   onKeyPress = (event) => {
@@ -21,6 +23,10 @@ class Scanner extends Component {
     this.setState({ input: event.target.value });
   }
 
+  focusTextInput = () => {
+    this.textInput.current.focus();
+  }
+
   render() {
     return (
       <input 
@@ -28,8 +34,9 @@ class Scanner extends Component {
       onKeyPress={this.onKeyPress} 
       onChange={this.handleChange} 
       value={this.state.input}
+      ref={this.textInput}
       autoFocus
-      ocus/>
+      />
     )
   }
 }

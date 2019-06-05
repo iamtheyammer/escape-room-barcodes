@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './index.css';
 import Dropdown from './Dropdown';
+import craftingResult from '../../../assets/images/craftingResult.png';
 
 let refIngredients = [
   {
@@ -51,7 +52,7 @@ class CraftingTable extends Component {
         {
           id: 'egg1',
           solution: 'egg',
-          solved: false
+          solved: true
         },
         {
           id: 'sugar2',
@@ -106,13 +107,14 @@ class CraftingTable extends Component {
               <Dropdown
                 className="options"
                 onChange={this.onChange}
-                options={['----', 'Egg', 'Wheat', 'Milk', 'Sugar']}
+                options={['Egg', 'Wheat', 'Milk', 'Sugar']}
                 correctSolution={field.solution}
                 id={field.id}
               />
             </div>
           ))
         }
+        <img className="craftingResult" src={craftingResult} alt="craftingResult"></img>
       </div>
     )
   }
